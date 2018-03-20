@@ -49,7 +49,7 @@ int main(){
 		cout << "P" << it->at(2) << endl;
 		int delay = it->at(0);
 		int time = it->at(1);
-		if(total >= delay){
+		if(total == 0 || total >= delay){
 			last += time;
 			total += last-delay;
 			waiting += last-time-delay;
