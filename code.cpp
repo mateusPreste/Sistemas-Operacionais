@@ -3,19 +3,19 @@
 using namespace std;
 
 /*
-	* Acho necessário uma função de inserção ordenada pois é possivel inserir um processo em qualquer ordem
-	* E o FIFO vai executar o primeiro processo disponivel, que pode não ser o primeiro inserido pelo usuario, devido ao tempo de entrega
-	* Insere o par de inteiros de forma ordenada, do menor para o maior "tempo de entrega"
-*/
-void insert(std::vector<std::vector<int>>& vector, std::vector<int>& element){
+ * Acho necessário uma função de inserção ordenada pois é possivel inserir um processo em qualquer ordem
+ * E o FIFO vai executar o primeiro processo disponivel, que pode não ser o primeiro inserido pelo usuario, devido ao tempo de entrega
+ * Insere o par de inteiros de forma ordenada, do menor para o maior "tempo de entrega"
+ */
+void insertFCFS(std::vector<std::vector<int>>& vector, std::vector<int>& element){
 	for(std::vector<std::vector<int>>::iterator it = vector.begin(); it != vector.end(); ++it){
 		//Se encontrar um elemento no vetor que tem "tempo de entrega" maior, insira antes dele
 		if(it->at(0) > element.at(0)){
 			/*
-				* insere em uma posição anterior que onde o iterador está
-				* não é possivel inserir na ultima posição do vetor desta forma
-			*/
-			vector.insert(it, element); 
+			 * insere em uma posição anterior que onde o iterador está
+			 * não é possivel inserir na ultima posição do vetor desta forma
+			 */
+			vector.insertFCFS(it, element); 
 			return;
 		}
 	}
@@ -37,7 +37,7 @@ int main(){
 		process.push_back(time);
 		process.push_back(processes.size()+1);
 
-		insert(processes, process);
+		insertFCFS(processes, process);
 	}
 
 	double total = 0;
